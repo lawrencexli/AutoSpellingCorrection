@@ -2,6 +2,7 @@ from queue import PriorityQueue
 from trie import Trie2
 import time
 
+
 def loadWordsTrie():
     f = open('wordlist.txt', 'r') 
     lines = f.readlines()
@@ -17,7 +18,6 @@ def loadWordsTrie():
 
 
 def getWordsDistance1(word, freeSymbol='?'):
-
     possibleWords = []
 
     #Insert
@@ -35,39 +35,32 @@ def getWordsDistance1(word, freeSymbol='?'):
         newWord = word[0:i] + freeSymbol + word[i+1:]
         possibleWords.append(newWord)
 
-
     return possibleWords
 
 
 def getWordsDistance(word, d, freeSymbol='?'):
-
-    if d==1: return getWordsDistance1(word, freeSymbol)
+    if d == 1:
+        return getWordsDistance1(word, freeSymbol)
     wordsPrev = getWordsDistance(word, d-1, freeSymbol)
     words = []
-    for w in wordsPrev: words += getWordsDistance1(w, freeSymbol)
+    for w in wordsPrev:
+        words += getWordsDistance1(w, freeSymbol)
     return words
-
 
 
 #Testing
 if __name__ == "__main__":
-
     trie = loadWordsTrie()
-
     print("words loaded")
 
-    # matches = trie.matchAll("ap???")
-    # print(matches)
-
-
-
     t1 = time.time()
-    words = getWordsDistance("aple", 2)
+    words = getWordsDistance("hello", 2)
 
     possibleWords = []
     for word in words:
         possibleWords += trie.matchAll(word)
-    totalTime = time.time()-t1
+
+    totalTime = time.time() - t1
 
     print(words)
     print(possibleWords)
