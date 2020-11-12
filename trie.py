@@ -9,6 +9,10 @@ class Trie:
 
     def insert(self, word):
 
+        """
+        Insert word to Trie
+        """
+
         cur = self.root
         for c in word:
             if c in cur.children:
@@ -21,6 +25,11 @@ class Trie:
 
 
     def search(self, word):
+
+        """
+        Checks if word exist in Trie
+        """
+
         cur = self.root
         for c in word:
             if c in cur.children:
@@ -29,25 +38,36 @@ class Trie:
                 return False
                 
         return cur.isEnd == True
-                
-class Trie2(Trie):
+            
 
 
     def matchAll(self, word, freeSymbol='?'):
+        """
+        Returns a list of all matching words in the Trie that can be obtained by replacing the '?' (or freeSymbol) characters
+        Wrapper for __matchAllR
+        """
         return self.__matchAllR(word, self.root, freeSymbol)
 
-    def __matchAllR(self, word, cur, freeSymbol):
 
-        words = []
+    def __matchAllR(self, word, cur, freeSymbol):
+        """
+        Recursive function to get alll matching words by replacing the '?' (or given freeSymbol) character
+        word: input word
+        cur: current node in the Trie
+        freeSymbol: symbol to use for the unknown characters (usually '?')
+        """
+
+        words = [] #List of words to be returned
         
-        missing = word
-        explored = ""
+        missing = word #part of the word that hasn't been explored yet
+        explored = "" #part of the word that was explored already
         loopBroken = False
         for c in word:
             missing = missing[1:]
 
-            if c == freeSymbol:
+            if c == freeSymbol: #if character is (?) or unknown
                 
+                #Recursively call function in the remaining of the word with every possible children
                 for childVal, childNode in cur.children.items():
                     newEnds = self.__matchAllR(missing, childNode, freeSymbol)
 
@@ -69,8 +89,11 @@ class Trie2(Trie):
         
 
 class Node:
+    """
+    Node to use in the Trie
+    """
 
     def __init__(self):
 
-        self.children = {}
-        self.isEnd = False
+        self.children = {} #dictionary to represent children
+        self.isEnd = False  #wheither this node is the end of a word
