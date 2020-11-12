@@ -44,14 +44,13 @@ class Trie2(Trie):
         explored = ""
         loopBroken = False
         for c in word:
-
             missing = missing[1:]
 
             if c == freeSymbol:
                 
                 for childVal, childNode in cur.children.items():
                     newEnds = self.__matchAllR(missing, childNode, freeSymbol)
-                    
+
                     for end in newEnds:
                         words.append(explored + childVal + end)                    
                 
