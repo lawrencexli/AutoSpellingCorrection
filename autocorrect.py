@@ -23,11 +23,15 @@ def spellcheck(input, trie):
 if __name__ == "__main__":
     dict_trie = loadWordsTrie()
 
+    #You need to manually end the loop
     while (True):
         print('Enter a word:')
         userInput = input()
         t1 = time.time()
         result = spellcheck(userInput,dict_trie)
-        print(result)
+        if (len(result) == 0):
+            print("Unable to find matches")
+        else:
+            print(result)
         print("Total time taken: "+str(time.time() - t1))
 
