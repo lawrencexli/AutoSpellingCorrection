@@ -4,11 +4,14 @@ from spellCheck import loadWordsTrie
 """
 Input a text document and it can autocorrect all the words 
 and output a file with corrected words
+Parameters
+@filenameIn: name of the input file
+@filenameOut: name of the output file containing the corrected result
 """
-def changeWords(filename):
+def changeWords(filenameIn,filenameOut):
     dict_trie = loadWordsTrie()
-    fileIn = open(filename,"rt")
-    fileOut = open("out.txt","wt")
+    fileIn = open(filenameIn, "rt")
+    fileOut = open(filenameOut,"wt")
     for line in fileIn:
         for word in line.split():
             #Check if the word contains any symbols at the end
@@ -27,4 +30,4 @@ def changeWords(filename):
 
 #Test
 if __name__ == "__main__":
-    changeWords("test.txt")
+    changeWords("test.txt","out.txt")
