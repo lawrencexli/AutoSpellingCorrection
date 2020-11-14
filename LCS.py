@@ -22,3 +22,9 @@ def lcs(string1, string2):
 
     return c[len(string1)][len(string2)]
 
+
+# Test
+if __name__ == "__main__":
+    print(lcs("lawrence", "laurance"))
+    print(lcs("Sebastian", "Sabestiam"))
+    print(lcs("Jonathan","Jomathem"))
