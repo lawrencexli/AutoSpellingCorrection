@@ -6,6 +6,8 @@ from testing import *
 from LCS import lcs
 
 def spellcheck(input, trie):
+    if (trie.search(input)):
+        return input
     words = getWordsDistance(input, 2)
     possibleWords = []
     for word in words:
