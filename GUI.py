@@ -113,4 +113,7 @@ if __name__ == "__main__":
     output_text = tk.Text()
     output_text.pack(fill=tk.BOTH, side=tk.LEFT)
 
+    window.mainloop()
+
+
     
