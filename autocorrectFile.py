@@ -25,6 +25,7 @@ def changeWords(filenameIn,filenameOut):
                 corrected = spellcheck(word, dict_trie)
                 if (len(corrected) != 0):
                     fileOut.write(word.replace(word, corrected) + " ")
+        fileOut.write("\n")
     fileIn.close()
     fileOut.close()
 

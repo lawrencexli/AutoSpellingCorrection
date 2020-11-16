@@ -5,7 +5,7 @@ def loadWordsTrie():
     Load words from wordlist.txt into trie
     """
 
-    f = open('wordlist.txt', 'r') 
+    f = open('google-10000-english-usa.txt', 'r')
     lines = f.readlines()
     f.close()
 

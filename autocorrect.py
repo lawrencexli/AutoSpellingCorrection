@@ -21,7 +21,6 @@ def spellcheck(input, trie):
             best_word = candidate
     return best_word
 
-
 if __name__ == "__main__":
     dict_trie = loadWordsTrie()
 
