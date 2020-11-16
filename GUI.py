@@ -3,12 +3,12 @@ from spellCheck import *
 
 dict_trie = loadWordsTrie()         # global variable for the trie of words
 
-def spellcheck_popularity(input, trie):
+def spellcheck_popularity(word_input, trie):
     """
-    takes a word, input, and a trie to search for that word
+    takes a word, word_input, and a trie to search for that word
     returns the word that is most common in the resulting possible words
     """
-    words = getWordsDistance(input, 2)
+    words = getWordsDistance(word_input, 2)
     possibleWords = []
     for word in words:
         possibleWords += trie.matchAll(word)
