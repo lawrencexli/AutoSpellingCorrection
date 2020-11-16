@@ -24,6 +24,7 @@ def lcs(string1, string2):
 
 
 # Test
-print(lcs("lawrence", "laurance"))
-print(lcs("Sebastian", "Sabestiam"))
-print(lcs("Jonathan","Jomathem"))
+if __name__ == "__main__":
+    print(lcs("lawrence", "laurance"))
+    print(lcs("Sebastian", "Sabestiam"))
+    print(lcs("Jonathan","Jomathem"))

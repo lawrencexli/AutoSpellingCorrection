@@ -1,0 +1,3 @@
+welcoemt to computre sciiense! in this bocurse, you will learn how to porgram using python and java.
+in additno to the porgramming lanugages, youk will also learn some basicv algortiihms and runitme compleixty.
+this wlil help you to hvae a better understanidng about how computer porgramming works.

@@ -2,10 +2,10 @@ from trie import Trie
 
 def loadWordsTrie():
     """
-    Load words from wordlist.txt into trie
+    Load words from google-10000-english-usa.txt into trie
     """
 
-    f = open('wordlist.txt', 'r') 
+    f = open('google-10000-english-usa.txt', 'r')
     lines = f.readlines()
     f.close()
 

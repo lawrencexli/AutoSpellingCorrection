@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # print(matches)
 
     t1 = time.time()
-    words = getWordsDistance("aple", 2)
+    words = getWordsDistance("dsfsdf", 1)
 
     possibleWords = []
     for word in words:
