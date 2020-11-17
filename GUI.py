@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from spellCheck import *
 
 dict_trie = loadWordsTrie()         # global variable for the trie of words
@@ -92,6 +93,11 @@ def handle_click(event):
     """
     Handles the Check Spelling button click
     """
+    if (algorithm.get() == 0):              # check that algorithm was selected
+        messagebox.showwarning("Warning", "Must select an algorithm before proceeding!")
+
+    # else changeWords with algorithm specified in algorithm.get()
+    
     output_text.delete("1.0", tk.END)       # clear the current output text box
     text = input_text.get("1.0", tk.END)    # get all of the current text from the input text box
     updatedText = changeWords(text)         # update any mistakes to the text
@@ -112,6 +118,13 @@ if __name__ == "__main__":
 
     frame = tk.Frame(master=window, width=100, height=50)
     frame.pack(fill=tk.BOTH)
+
+    tk.Label(frame, text="Word Selection Algorithm:", bg="Orange", width=50).pack(anchor=tk.W)
+    # radio buttons for word selection algorithm
+    algorithm = tk.IntVar()
+    tk.Radiobutton(frame, text="Appearance", variable=algorithm, value=1).pack(anchor=tk.W)
+    tk.Radiobutton(frame, text="Longest Common Subsequence", variable=algorithm, value=2).pack(anchor=tk.W)
+    tk.Radiobutton(frame, text="Frequency", variable=algorithm, value=3).pack(anchor=tk.W)
     
 
     button = tk.Button(master=frame, text="Check Spelling", width=25, height=5, bg="blue", fg="orange")
