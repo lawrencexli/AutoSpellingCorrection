@@ -3,7 +3,7 @@ class Trie:
     def __init__(self):
         self.root = Node()
 
-    def insert(self, word):
+    def insert(self, word, frequency = -1):
         """
         Insert word to Trie
         """
@@ -16,6 +16,7 @@ class Trie:
                 cur.children[c] = newN
                 cur = newN
         cur.isEnd = True
+        cur.freq = frequency
 
     def search(self, word):
         """
@@ -29,6 +30,22 @@ class Trie:
                 return False
 
         return cur.isEnd == True
+
+    def findFreq(self, word):
+        """
+        Find the words frequency
+        """
+        cur = self.root
+        for c in word:
+            if c in cur.children:
+                cur = cur.children[c]
+            else:
+                return -1
+
+        if cur.isEnd == True:
+            return cur.freq
+        else:
+            return -1
 
     def matchAll(self, word, freeSymbol='?'):
         """
@@ -83,4 +100,5 @@ class Node:
     def __init__(self):
         self.children = {}  # dictionary to represent children
         self.isEnd = False  # wheither this node is the end of a word
+        self.freq = -1
 

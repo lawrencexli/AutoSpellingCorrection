@@ -9,11 +9,14 @@ def loadWordsTrie():
     lines = f.readlines()
     f.close()
 
+    rank = 0        # order of the words by given frequency
+
     trie = Trie()
     for line in lines:
+        rank += 1
         word = line.rstrip() #remove '\n'
         if word == "": continue #slip empty strings
-        trie.insert(word)
+        trie.insert(word, rank)
 
     return trie
 

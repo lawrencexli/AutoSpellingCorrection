@@ -13,6 +13,20 @@ def spellcheck_popularity(word_input, trie):
     for word in words:
         possibleWords += trie.matchAll(word)
 
+    lowest_rank = 11000
+    best_word = ""
+    cur_rank = 0
+
+    for candidate in possibleWords:
+        cur_rank = trie.findFreq(candidate)
+        if cur_rank != -1 and cur_rank < lowest_rank:
+            lowest_rank = cur_rank
+            best_word = candidate
+
+    return best_word
+
+
+    """
     # find most common word returned
     popularity = {}
     for candidate in possibleWords:
@@ -29,7 +43,9 @@ def spellcheck_popularity(word_input, trie):
             best_match = popularity[candidate]
             best_word = candidate
 
-    return best_word
+    """
+
+    #return best_word
 
 
 def changeWords(text):
@@ -41,6 +57,7 @@ def changeWords(text):
     correctedText = ""
 
     for word in text.split():
+        word = word.lower()
         #Check if the word contains any symbols at the end
         if (any(elem in word[-1] for elem in ".,?!();:")):
                 # Check if word is already correct

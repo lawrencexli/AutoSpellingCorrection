@@ -31,4 +31,4 @@ def changeWords(filenameIn,filenameOut):
 
 #Test
 if __name__ == "__main__":
-    changeWords("test.txt","out.txt")
+    changeWords("input_test.txt","output_text.txt")
