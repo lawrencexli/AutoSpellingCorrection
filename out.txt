@@ -1,3 +1,1 @@
-welcome to computer science! in this course, you will learn how to program using python and java. 
-in addition to the programming languages, york will also learn some basics algorithms and runtime complexity. 
-this will help you to have a better understanding about how computer programming works. 
+welcome to compute science! in this course, you will learn how to program using python and java in addition to the programming languages, you will also learn some basic algorithms and runtime complexity. this lil help you to have a better understanding about how computer programming works 

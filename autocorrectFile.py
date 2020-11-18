@@ -1,34 +1,48 @@
-from autocorrect import spellcheck
-from spellCheck import loadWordsTrie
+from spellCheck import loadWordsTrie, changeWords
+from spellCheckingAlgorithms import *
 
-"""
-Input a text document and it can autocorrect all the words 
-and output a file with corrected words
-Parameters
-@filenameIn: name of the input file
-@filenameOut: name of the output file containing the corrected result
-"""
-def changeWords(filenameIn,filenameOut):
+
+def changeWordsFile(filenameIn,filenameOut, algo):
+    """
+    Input a text document and it can autocorrect all the words 
+    and output a file with corrected words
+    Parameters
+    @filenameIn: name of the input file
+    @filenameOut: name of the output file containing the corrected result
+    @algo: algorithm to be used for changing the words
+    """
     dict_trie = loadWordsTrie()
     fileIn = open(filenameIn, "rt")
     fileOut = open(filenameOut,"wt")
-    for line in fileIn:
-        for word in line.split():
-            #Check if the word contains any symbols at the end
-            #For example: "Hello," and "World!"
-            if (any(elem in word[-1] for elem in ".,?!();:")):
-                corrected = spellcheck(word[0:-1], dict_trie)
-                #If the autocorrect cannot find any matches, it will not modify that word
-                if (len(corrected) != 0):
-                    fileOut.write(word.replace(word[0:-1], corrected) + " ")
-            else:
-                corrected = spellcheck(word, dict_trie)
-                if (len(corrected) != 0):
-                    fileOut.write(word.replace(word, corrected) + " ")
-        fileOut.write("\n")
+    
+    inputText = ""
+    for line in fileIn: inputText += line
+    outputText = changeWords(inputText, dict_trie, algo)
+    
+    fileOut.write(outputText)
     fileIn.close()
     fileOut.close()
 
 #Test
 if __name__ == "__main__":
-    changeWords("input_test.txt","output_text.txt")
+
+    #select algo
+    algo = None
+    inp = input("Please select algorithm (1=appearances, 2=lcs, 3=popularity):")
+    if inp == "1":
+        algo = spellcheck_appearances
+    elif inp == "2":
+        algo = spellcheck_LCS
+    elif inp == "3":
+        algo = spellcheck_popularity
+    else:
+        print("Incorrect input")
+        exit()
+
+    inputFile = input("Input File: ")
+    if inputFile == "": inputFile = "test.txt"
+
+    outputFile = input("Output File: ")
+    if outputFile == "": outputFile = "out.txt"
+
+    changeWordsFile(inputFile,outputFile, algo)

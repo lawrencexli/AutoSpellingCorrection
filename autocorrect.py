@@ -1,38 +1,32 @@
-"""
-autocorrect version of the spelling check program
-using Trie and SymSpell application
-"""
-from testing import *
-from LCS import lcs
+from spellCheckingAlgorithms import *
+from spellCheck import *
+import time
 
-def spellcheck(userInputWord, trie):
-    if (trie.search(userInputWord)):
-        return userInputWord
-    words = getWordsDistance(userInputWord, 2)
-    possibleWords = []
-    for word in words:
-        possibleWords += trie.matchAll(word)
-
-    best_match = 0
-    best_word = ""
-    for candidate in possibleWords:
-        if lcs(userInputWord, candidate) > best_match:
-            best_match = lcs(userInputWord, candidate)
-            best_word = candidate
-    return best_word
 
 if __name__ == "__main__":
+
+    #select algo
+    algo = None
+    inp = input("Please select algorithm (1=appearances, 2=lcs, 3=popularity):")
+    if inp == "1":
+        algo = spellcheck_appearances
+    elif inp == "2":
+        algo = spellcheck_LCS
+    elif inp == "3":
+        algo = spellcheck_popularity
+    else:
+        print("Incorrect input")
+        exit()
+    print()
+
     dict_trie = loadWordsTrie()
 
     #You need to manually end the loop
     while (True):
-        print('Enter a word:')
-        userInput = input()
+        userInput = input('Enter text: ')
         t1 = time.time()
-        result = spellcheck(userInput,dict_trie)
-        if (len(result) == 0):
-            print("Unable to find matches")
-        else:
-            print(result)
+        result = changeWords(userInput, dict_trie, algo)#spellcheck(userInput,dict_trie)
+        print("Output:")
+        print(result)
         print("Total time taken: "+str(time.time() - t1))
-
+        print()
